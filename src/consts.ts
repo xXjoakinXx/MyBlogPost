@@ -4,7 +4,7 @@ export const SITE_DESCRIPTION =
   'Notes from a backend tech lead building an indie game: Go, distributed systems, agentic AI and Godot.';
 export const AUTHOR = 'Joaquin García';
 export const LINKS = {
-  github: 'https://github.com/',
+  github: 'https://github.com/xXjoakinXx',
   linkedin: 'https://www.linkedin.com/',
 };
 
