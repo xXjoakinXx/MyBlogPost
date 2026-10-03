@@ -5,7 +5,7 @@ export const SITE_DESCRIPTION =
 export const AUTHOR = 'Joaquin García';
 export const LINKS = {
   github: 'https://github.com/xXjoakinXx',
-  linkedin: 'https://www.linkedin.com/',
+  linkedin: 'https://www.linkedin.com/in/joaqu%C3%ADn-garc%C3%ADa-pi%C3%B1ero-97880bb4/',
 };
 
 // Prefix an internal path with the site's base path (e.g. /MyBlogPost).
