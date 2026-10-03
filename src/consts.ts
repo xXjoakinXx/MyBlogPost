@@ -7,3 +7,6 @@ export const LINKS = {
   github: 'https://github.com/',
   linkedin: 'https://www.linkedin.com/',
 };
+
+// Prefix an internal path with the site's base path (e.g. /MyBlogPost).
+export const withBase = (path: string) => import.meta.env.BASE_URL.replace(/\/$/, '') + path;
