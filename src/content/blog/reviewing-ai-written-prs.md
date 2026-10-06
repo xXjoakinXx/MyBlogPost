@@ -71,20 +71,6 @@ A reviewer's attention is the scarcest thing in the pipeline. Spending it on for
 - `govulncheck`
 - **Flag, don't block:** new dependencies and changes to existing tests. Both are legitimate. Both are where agents most often take a shortcut.
 
-The flagging step is a few lines in a workflow:
-
-```bash
-# Run in CI on the PR branch; BASE is the target branch (e.g. origin/main)
-BASE=${BASE:-origin/main}
-
-new_deps=$(git diff "$BASE"...HEAD -- go.mod | grep -E '^\+\s+[a-z0-9.-]+\.[a-z]+/' || true)
-changed_tests=$(git diff --name-only --diff-filter=M "$BASE"...HEAD -- '*_test.go' || true)
-
-[ -n "$new_deps" ] && echo "::warning::New dependencies in go.mod:%0A$new_deps"
-[ -n "$changed_tests" ] && echo "::warning::Existing tests modified:%0A$changed_tests"
-exit 0
-```
-
 Modified tests aren't a problem in themselves. A test changed in the same PR as the code it tests is exactly where "make it pass" hides, so it gets a human look.
 
 ### 4. Review for agent-shaped mistakes
