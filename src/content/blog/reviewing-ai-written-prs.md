@@ -105,7 +105,7 @@ And every point of the latest ones is something that I detected in different PRs
 
 The MSR study matched what we saw: agents are much worse at revising a PR than at writing one. After a couple of review rounds, the agent is mostly patching its patches, and the reviewer is managing the agent.
 
-Our rule is go ahead unless the reviewer mark something as higher risk: if a PR isn't approvable after 2 rounds, we close it, fix the ticket with what the review taught us, and run it again. Closing a PR felt wasteful at first. It's cheaper than a third round.
+Our rule: if a PR the reviewer marked as higher risk isn't approvable after two rounds, we close it, fix the ticket with what the review taught us, and run it again. Closing a PR felt wasteful at first. It's cheaper than a third round.
 
 ## What I still don't know
 
@@ -121,7 +121,7 @@ Our rule is go ahead unless the reviewer mark something as higher risk: if a PR 
 - [ ] A size limit (500 changed lines); bigger PRs get a higher risk score
 - [ ] CI: format, vet, lint, `-race`, `go mod tidy`, `govulncheck`
 - [ ] CI flags risks
-- [ ] Two rounds, then close and re-ticket
+- [ ] Higher-risk PRs: two rounds, then close and re-ticket
 
 COSMIC's maintainers made the right call for a volunteer project facing strangers' PRs. On a team that runs its own agents, the equivalent decision isn't a ban. It's deciding, deliberately, how much verification you can afford and making the pipeline fit that number.
 
