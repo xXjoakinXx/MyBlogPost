@@ -118,10 +118,9 @@ Our rule is go ahead unless the reviewer mark something as higher risk: if a PR 
 - [ ] Every agent PR has a named human owner who reads it before review
 - [ ] Owner and reviewer are different people
 - [ ] One ticket, one PR; no drive-by refactors
-- [ ] A size limit, enforced by splitting rather than heroic review
+- [ ] A size limit (500 changed lines); bigger PRs get a higher risk score
 - [ ] CI: format, vet, lint, `-race`, `go mod tidy`, `govulncheck`
 - [ ] CI flags risks
-- [ ] PR description includes evidence and stated uncertainty
 - [ ] Two rounds, then close and re-ticket
 
 COSMIC's maintainers made the right call for a volunteer project facing strangers' PRs. On a team that runs its own agents, the equivalent decision isn't a ban. It's deciding, deliberately, how much verification you can afford and making the pipeline fit that number.
