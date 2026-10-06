@@ -19,11 +19,11 @@ On October 5, System76 stopped accepting LLM-generated content in issues and pul
 
 The Hacker News thread split the way you'd expect: quality versus speed. I think both sides miss what the announcement actually says. **Generating code got cheap. Verifying it didn't.** COSMIC's maintainers didn't run out of code. They ran out of review time.
 
-I lead a small backend team that builds agentic pipelines: agents pick up tickets, write Go, open pull requests and try to fix CI when it breaks. I can't ban AI-written PRs, because we're the ones generating them. So the review queue the open-source maintainers complain about is our own queue, and we built it on purpose.
+I lead a backend team of four that builds agentic pipelines: agents pick up tickets, write Go, open pull requests and try to fix CI when it breaks. I can't ban AI-written PRs, because we're the ones generating them. So the review queue the open-source maintainers complain about is our own queue, and we built it on purpose.
+
+That queue grew fast. Before agents, I reviewed two to four PRs a day, depending on how much we were working with other teams. Now a day with only ten is a lucky one.
 
 This post is what I've learned about reviewing that queue without either rubber-stamping it or drowning in it.
-
-In the past, I usually reviewed an average of 2–4 PRs a day (depending on team size and cross-team collaboration; in my case, we're a team of 4). Today, in the AI age, it's a lucky day if I only have to review 10.
 
 ## The asymmetry
 
@@ -52,14 +52,14 @@ So the natural next step, driven by frustration, was to build a mechanism (anoth
 
 ### 2. Limit what reaches manual review
 
-The cheapest review is the one that never happens. This is why our PR reviewer agent is configured to explain to the developer the risks of approving the PR:
+The cheapest review is the one that never happens. Before a human looks at a PR, a reviewer agent scores how risky it is to approve and explains that risk to the developer. The main things it looks at:
 
-- **One ticket, one PR.** No "while I was here" refactors. Agents love tidying adjacent code, and every drive-by change is something else to verify, so at least we force every change to be registered in Jira.
-- **A size limit.** 500 changed lines. Above that, the reviewer raises the PR's risk.
-- **Changes that touch the cortex or anything considered core.** Modifying a return code in an HTTP response isn't the same as returning a new kind of controlled error or implementing a new feature. Every change has an associated risk cost, and it has to be evaluated.
-- **PRs without tests.** This one is obvious too, because we've configured our AI agents to work with TDD, but an extra check isn't worthless.
+- **One ticket, one PR.** No "while I was here" refactors. Agents love tidying adjacent code, and every drive-by change is something else to verify. At the very least, every change has to be registered in Jira.
+- **Size.** Anything over 500 changed lines gets a higher risk score.
+- **Changes that touch the cortex or anything considered core.** Not every change carries the same risk. Changing a return code in an HTTP response isn't the same as introducing a new kind of controlled error, let alone a new feature. The reviewer weighs each change by what it touches.
+- **Missing tests.** Our coding agents already work with TDD, so this should rarely trigger. An extra check is still worth having.
 
-There are more rules, but I think the concept is clear. If the reviewer agent considers the PR low risk, we allow automatic approval; otherwise, the PR notifies the owning team to review it. Of course this sounds dangerous, and it is, so this reviewer went through hundreds of iterations until we felt comfortable with it.
+There are more rules, but that's the idea. If the reviewer agent rates a PR as low risk, it's approved automatically. Otherwise, it notifies the owning team to review it. Yes, auto-approval sounds dangerous, and it is. That's why the reviewer went through hundreds of iterations before we were comfortable trusting it.
 
 ### 3. Push the mechanical checks into CI
 
@@ -111,7 +111,7 @@ Our rule: if a PR the reviewer marked as higher risk isn't approvable after two 
 
 COSMIC's maintainers made the right call for a volunteer project facing strangers' PRs. On a team that runs its own agents, the equivalent decision isn't a ban. It's deciding, deliberately, how much verification you can afford and making the pipeline fit that number.
 
-We're not close to solving the knowledge sharing we used to get from pair programming, and PR review fatigue is far from mitigated. But step by step, iterating on our developers' daily frustrations is how we'll find the right shape for our work battlegrounds.
+We're not close to replacing the knowledge sharing we used to get from pair programming, and review fatigue is far from solved. What has worked so far is always the same move: take the frustrations our developers hit every day and iterate on them, one step at a time, until the process fits the work.
 
 ---
 
