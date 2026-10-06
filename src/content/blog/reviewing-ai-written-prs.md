@@ -111,7 +111,7 @@ Our rule is go ahead unless the reviewer mark something as higher risk: if a PR 
 
 - **Reviewer fatigue.** Reading agent code all day is different work from reading colleagues' code. The problem is that if someone in the team has not much experience the approavl of the PR will convert quickly in an auto-approval based on confidence colleages.
 - **Juniors.** If agents write the code and seniors review it, how do juniors learn? In PRs is impossible, so what we are testing is to try to collect weekly the most complex techincal problems of the week and try to analize and explain together in a meeting.
-- **AI reviewers.** I trust our reviewer agent's judgment. What I haven't solved is re-review. Every change to the PR triggers a new review, the reviewer finds something new, the coding agent fixes it, and the reviewer runs again. Left alone, that loop never ends, and I don't have a good rule yet for when to stop it. In our latest tests I checked that only the 20% of the PRs generated are classified as lower risk in our PRs reviewer. So in the end the feelings are that we are saving just the 20% of our daily time. Is not a big impact but at least helps in a PR review priorization order. 
+- **AI reviewers.** I trust our reviewer agent's judgment. What I haven't solved is re-review. Every change to the PR triggers a new review, the reviewer finds something new, the coding agent fixes it, and the reviewer runs again. Left alone, that loop never ends, and I don't have a good rule yet for when to stop it. In our latest tests, the reviewer classified only about 20% of agent PRs as low risk. So auto-approval doesn't remove much of the review load, but the risk score does help us decide which PRs to review first.
 
 ## Checklist
 
