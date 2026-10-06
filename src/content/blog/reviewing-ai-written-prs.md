@@ -78,11 +78,11 @@ Once CI has done its part, the human review is about what CI can't see. Agent mi
 
 Every one of these is something I've caught in different PRs. AI is amazing for development and gets better every year, but just like humans, agents sometimes make mistakes.
 
-### 5. Two rounds, then start over
+### 5. Two rounds, then a human decides
 
 The MSR study matched what we saw: agents are much worse at revising a PR than at writing one. After a couple of review rounds, the agent is mostly patching its patches, and the reviewer is managing the agent.
 
-Our rule: if a PR the reviewer marked as higher risk isn't approvable after two rounds, we close it, fix the ticket with what the review taught us, and run it again. Closing a PR felt wasteful at first. It's cheaper than a third round.
+Our rule: if a PR the reviewer marked as higher risk isn't approvable after two rounds, the agent stops and a human reviews it manually. If it still doesn't look good after that, we discard it. Throwing away a PR felt wasteful at first. It's cheaper than a third round with the agent.
 
 ## What I still don't know
 
@@ -98,7 +98,7 @@ Our rule: if a PR the reviewer marked as higher risk isn't approvable after two 
 - [ ] A size limit (500 changed lines); bigger PRs get a higher risk score
 - [ ] CI: format, vet, lint, `-race`, `go mod tidy`, `govulncheck`
 - [ ] CI flags risks
-- [ ] Higher-risk PRs: two rounds, then close and re-ticket
+- [ ] Higher-risk PRs: two rounds, then a manual review; discard it if it still doesn't hold up
 
 COSMIC's maintainers made the right call for a volunteer project facing strangers' PRs. On a team that runs its own agents, the equivalent decision isn't a ban. It's deciding, deliberately, how much verification you can afford and making the pipeline fit that number.
 
