@@ -1,19 +1,10 @@
 ---
 title: "Reviewing AI-written PRs as a tech lead: verification is the bottleneck, not generation"
 description: "Agents made writing code cheap, not reviewing it. How a team that runs its own coding agents keeps its PR queue reviewable."
-pubDate: 2026-10-06
+pubDate: 2026-10-07
 tags: [ai-agents, code-review, go, tech-lead]
-draft: true
+draft: false
 ---
-
-<!--
-EDITING NOTES (delete before publishing)
-- [YOUR STORY: ...] = something only you can write. These slots are what make the post yours, so don't cut them.
-- [NUMBER: ...] = an anonymized figure (round it, use a ratio or a range).
-- [STATUS: ...] = honest status: done, trying it, or planned.
-- Keep out: team size if it identifies you, internal service names, the ticket system, agent vendor (unless you're fine naming it).
-- The Go/Kafka failure list is a menu, not a claim. Keep only the ones you've actually seen, and add your own.
--->
 
 On October 5, System76 stopped accepting LLM-generated content in issues and pull requests to its COSMIC and Pop!_OS projects: "including code, comments, and descriptions." The reason wasn't ideological. The maintainers were swamped. Too many first-time, LLM-generated PRs, a low acceptance rate, and a small team that has to review all of it.
 
